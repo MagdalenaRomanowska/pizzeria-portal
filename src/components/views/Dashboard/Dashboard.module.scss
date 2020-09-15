@@ -1,0 +1,17 @@
+@import '../../../styles/settings.scss';
+
+.component {
+  padding: 12px;
+}
+
+.list {
+  background-color: rgb(136, 103, 246);
+  color: white;
+  padding: 8px;
+  margin: 8px;
+  border: solid 1px black;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display:inline-block;
+}
