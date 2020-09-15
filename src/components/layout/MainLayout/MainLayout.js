@@ -5,7 +5,7 @@ import PageNav from '../PageNav/PageNav';
 const MainLayout = props => (
   <div>
     {props.children}
-    <PageNav />!!main!!
+    <PageNav />
   </div>
 );
 

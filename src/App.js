@@ -1,25 +1,30 @@
 import React from 'react';
 import MainLayout from  './components/layout/MainLayout/MainLayout';
-import PageNav from  './components/layout/PageNav/PageNav';
-import {BrowserRouter/*, Route*/, Switch} from 'react-router-dom';
-//import Homepage from  './components/views/Homepage/Homepage';
-//import LoginUser from './components/views/LoginUser/LoginUser';
-//import Kitchen from './components/views/Kitchen/Kitchen';
-//import ListForToday from './components/views/ListForToday/ListForToday';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+// import Home from  './components/views/Home/Home';
+// import Login from './components/views/Login/Login';
+// import Kitchen from './components/views/Kitchen/Kitchen';
+// import ListForToday from './components/views/ListForToday/ListForToday';
+import NotFound from './components/views/NotFound/NotFound';
+// import Ordering from './components/views/Ordering/Ordering';
+// import Tables from './components/views/Tables/Tables';
+// import Waiter from './components/views/Waiter/Waiter';
 
 function App() {
   return (
-    <BrowserRouter basename={'/panel'}>
+    <BrowserRouter basename={'/'}>
       <MainLayout>
-        <div>fff</div>
         <Switch>
-          {/* <Route path={process.env.PUBLIC_URL + '/homepage'} component={Homepage} /> */}
-          {/* <Route path={process.env.PUBLIC_URL + '/loginUser'} component={LoginUser} /> */}
-          {/* <Route path={process.env.PUBLIC_URL + '/kitchen'} component={Kitchen} /> */}
-          {/* <Route path={process.env.PUBLIC_URL + '/listForToday'} component={ListForToday} /> */}
+          {/* <Route exact path={process.env.PUBLIC_URL + '/home'} component={Home} />
+          <Route path={process.env.PUBLIC_URL + '/login'} component={Login} />
+          <Route exact path={process.env.PUBLIC_URL + '/kitchen'} component={Kitchen} />
+          <Route path={process.env.PUBLIC_URL + '/listForToday'} component={ListForToday} />
+          <Route path={process.env.PUBLIC_URL + '/ordering'} component={Ordering} />
+          <Route path={process.env.PUBLIC_URL + '/tables'} component={Tables} />
+          <Route path={process.env.PUBLIC_URL + '/waiter'} component={Waiter} /> */}
+          <Route path='*' component={NotFound} />
         </Switch>
       </MainLayout>
-      <PageNav />
     </BrowserRouter>
   );
 }
