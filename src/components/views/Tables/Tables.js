@@ -5,12 +5,10 @@ import styles from './Tables.module.scss';
 const Tables = () => (
   <div className={styles.component}>
     <h2>Tables view</h2>
-    <h2>id: {window.location.pathname}</h2>
-    <Link to={`/panel/tables/booking/4`} className={styles.list}>Booking details 4</Link>
-    <Link to={`/panel/tables/booking/5`} className={styles.list}>Booking details 5</Link>
-    <Link to={`/panel/tables/booking/new`} className={styles.list}>New bookings </Link>
-    <Link to={`/panel/tables/events/:id`} className={styles.list}>Event details </Link>
-    <Link to={`/panel/tables/events/new`} className={styles.list}>New events </Link>
+    <Link exact to={`${process.env.PUBLIC_URL}/tables/booking/`} className={styles.list} activeClassName='active'>Booking Details </Link><br></br>
+    <Link exact to={`${process.env.PUBLIC_URL}/tables/bookings/new`} className={styles.list} activeClassName='active'>New booking</Link><br></br>
+    <Link exact to={`${process.env.PUBLIC_URL}/tables/event/`} className={styles.list} activeClassName='active'>Event Details </Link><br></br>
+    <Link exact to={`${process.env.PUBLIC_URL}/tables/events/new`} className={styles.list} activeClassName='active'>New event</Link><br></br>
   </div>
 );
 

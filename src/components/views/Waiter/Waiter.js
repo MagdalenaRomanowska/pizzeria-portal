@@ -5,9 +5,8 @@ import styles from './Waiter.module.scss';
 const Waiter = () => (
   <div className={styles.component}>
     <h2>Waiter view</h2>
-    <h2>id: </h2>
-    <Link to={`/panel/waiter/order/new`} className={styles.list}>New orders </Link>
-    <Link to={`/panel/waiter/order/:id`} className={styles.list}>Order details </Link>
+    <Link exact to={`${process.env.PUBLIC_URL}/waiter/order/`} className={styles.list} activeClassName='active'>Waiter Order Details </Link><br></br>
+    <Link exact to={`${process.env.PUBLIC_URL}/waiter/orders/new`} className={styles.list} activeClassName='active'>Waiter - New Order</Link><br></br>
   </div>
 );
 

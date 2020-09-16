@@ -4,9 +4,9 @@ import styles from './ListForToday.module.scss';
 
 const ListForToday = () => (
   <div className={styles.component}>
-    <h2>ListForToday (reservations and events) view</h2>
-    <Link to={`/panel/listForToday/orders`} className={styles.list}>Orders for today</Link>
-    <Link to={`/panel/listForToday/events`} className={styles.list}>Events for today </Link>
+    <h2>ListForToday (bookings and events) view</h2>
+    <Link exact to={`${process.env.PUBLIC_URL}/tables/booking/`} className={styles.list} activeClassName='active'>Booking Details </Link><br></br>
+    <Link exact to={`${process.env.PUBLIC_URL}/tables/event/`} className={styles.list} activeClassName='active'>Event Details </Link><br></br>
   </div>
 );
 

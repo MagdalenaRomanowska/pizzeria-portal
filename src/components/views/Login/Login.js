@@ -5,7 +5,7 @@ import styles from './Login.module.scss';
 const Login = () => (
   <div className={styles.component}>
     <h2>Login view</h2>
-    <Link to={`/panel/dashboard`} className={styles.list}>Submit </Link>
+    <Link to={`/panel/dashboard`} className={styles.list}>Submit</Link>
   </div>
 );
 

@@ -1,7 +1,7 @@
 @import '../../../styles/settings.scss';
 
 .component {
-  padding: 12px;
+  padding: $base-size;
 }
 
 .list {
@@ -13,4 +13,5 @@
   border-radius: 5px;
   text-transform: uppercase;
   text-decoration: none;
+  display: inline-flex;
 }
