@@ -42,11 +42,11 @@ const Ordering = () => (
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>Order or <br></br>Booking/Event<br></br> Number</TableCell>
-          <TableCell>Table Number <br></br>/ Online Order <br></br>Number</TableCell>
-          <TableCell>Ordered <br></br>Dishes</TableCell>
-          <TableCell>Dishes <br></br>Amount</TableCell>
-          <TableCell>Details</TableCell>
+          <TableCell><b>Order or <br></br>Booking/Event<br></br> Number</b></TableCell>
+          <TableCell><b>Table Number <br></br>/ Online Order <br></br>Number</b></TableCell>
+          <TableCell><b>Ordered <br></br>Dishes</b></TableCell>
+          <TableCell><b>Dishes <br></br>Amount</b></TableCell>
+          <TableCell><b>Details</b></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
