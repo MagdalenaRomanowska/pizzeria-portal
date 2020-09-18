@@ -3,8 +3,11 @@
 .component {
   padding: $base-size;
   margin-left: auto;
+  display: inline-flex;
 }
 
 .link {
   color: inherit; //kolor biały, od rodzica z material UI.
+
 }
+

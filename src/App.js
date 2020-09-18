@@ -35,7 +35,7 @@ const theme = createMuiTheme({ //metoda ze strony Material UI, Customization, Pa
 function App() {
   return (
     <BrowserRouter basename={'/'}>
-      <StylesProvider injectFirst> {/*z Material UI, ten zapis powoduje, że style z MUI są ważniejsze od pisanych przez nas.*/}
+      <StylesProvider injectFirst> {/*z Material UI, ten zapis powoduje, że style z MUI są ważniejsze od pisanych przez nas.} */}
         <ThemeProvider theme={theme}>
           <MainLayout>
             <Switch>
