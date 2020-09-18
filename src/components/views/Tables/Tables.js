@@ -12,8 +12,6 @@ const Tables = () => (
     <Link to={`/panel/tables/event/1`} className={styles.list}>Event 1 - details</Link><br></br>
     <Link to={`/panel/tables/event/2`} className={styles.list}>Event 2 - details</Link><br></br>
     <Link to={`/panel/tables/event/3`} className={styles.list}>Event 3 - details</Link><br></br>
-    <Link to={`/panel/tables/event/4`} className={styles.list}>Event 4 - details</Link><br></br>
-    <Link to={`/panel/tables/event/5`} className={styles.list}>Event 5 - details</Link>
   </div>
 );
 
