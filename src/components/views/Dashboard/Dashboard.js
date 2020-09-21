@@ -1,7 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-//import ListForToday from '../ListForToday/ListForToday';
-//import Ordering from '../Ordering/Ordering';
 import styles from './Dashboard.module.scss';
 
 const Dashboard = () => (

@@ -33,6 +33,10 @@ const demoContent = [
   {hour: '20:30-21:00', status: 'orderButton'},
   {hour: '21:00-21:30', status: 'orderButton'},
   {hour: '21:30-22:00', status: 'orderButton'},
+  {hour: '22:00-22:30', status: 'orderButton'},
+  {hour: '22:30-23:00', status: 'orderButton'},
+  {hour: '23:00-23:30', status: 'orderButton'},
+  {hour: '23:30-00:00', status: 'orderButton'},
 ];
 
 const renderActions = () => {
@@ -48,9 +52,12 @@ const BookingNew = () => (
       <TableHead>
         <TableRow>
           <TableCell>Table 1</TableCell>
+          <TableCell></TableCell>
+          <TableCell></TableCell>
           <TableCell>Table 2</TableCell>
+          <TableCell></TableCell>
+          <TableCell></TableCell>
           <TableCell>Table 3</TableCell>
-          <TableCell>Table 4</TableCell>
           <TableCell></TableCell>
         </TableRow>
       </TableHead>
@@ -61,10 +68,17 @@ const BookingNew = () => (
               {row.hour}
             </TableCell>
             <TableCell>
-              {row.hour}
+              {renderActions(row.status)}
+            </TableCell>
+            <TableCell>
             </TableCell>
             <TableCell>
               {row.hour}
+            </TableCell>
+            <TableCell>
+              {renderActions(row.status)}
+            </TableCell>
+            <TableCell>
             </TableCell>
             <TableCell>
               {row.hour}

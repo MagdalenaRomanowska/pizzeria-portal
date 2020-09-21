@@ -9,9 +9,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 const demoContent = [
-  {order: 123, tableNumber: '1', onlineOrderNumber: '', dishes: 'dinner set no.1', amount: 3},
-  {order: 234, tableNumber: '2', onlineOrderNumber: '', dishes: 'dinner set no.2', amount: 2},
-  {order: 345, tableNumber: '', onlineOrderNumber: 'online 1', dishes: 'dinner set no.3', amount: 4},
+  {order: 123, tableNumber: '1', onlineOrderNumber: '', dishes: 'dinner set no.1', amount: 3, options: 'spicy'},
+  {order: 234, tableNumber: '2', onlineOrderNumber: '', dishes: 'dinner set no.2', amount: 2, options: 'no salt'},
+  {order: 345, tableNumber: '', onlineOrderNumber: 'online 1', dishes: 'dinner set no.3', amount: 4, options: 'extra ketchup'},
 ];
 
 const renderActions = () => {
@@ -30,6 +30,7 @@ const Kitchen = () => (
           <TableCell>Table Number <br></br>/ Online Order Number</TableCell>
           <TableCell>Ordered Dishes</TableCell>
           <TableCell>Dishes Amount</TableCell>
+          <TableCell>Dishes Options</TableCell>
           <TableCell></TableCell>
         </TableRow>
       </TableHead>
@@ -47,6 +48,9 @@ const Kitchen = () => (
             </TableCell>
             <TableCell>
               {row.amount}
+            </TableCell>
+            <TableCell>
+              {row.options}
             </TableCell>
             <TableCell>
               {renderActions(row.status)}
