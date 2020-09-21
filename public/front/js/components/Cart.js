@@ -1,4 +1,4 @@
-import {select, classNames, templates, settings} from '/js/settings.js'; 
+import {select, classNames, templates, settings} from '/js/settings.js';
 import {utils} from '/js/utils.js';
 import CartProduct from './CartProduct.js';
 
@@ -9,7 +9,6 @@ class Cart{ //koszyk
     thisCart.products = [];  //products added to basket
     thisCart.getElements(element);
     thisCart.initActions();
-    //console.log('new Cart' , thisCart);
   }
 
   getElements(element){
@@ -30,12 +29,12 @@ class Cart{ //koszyk
 
   initActions(){
     const thisCart = this;
-    function clickListener() {  
+    function clickListener() {
       thisCart.dom.toggleTrigger.addEventListener('click', clickHandler);
     }
     function clickHandler(event) {
       event.preventDefault();
-      thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive); 
+      thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     }
     clickListener();
 
@@ -78,7 +77,7 @@ class Cart{ //koszyk
       headers: {
         'Content-Type': 'application/json',  //ustawiamy nagłówek, by serwer wiedział, że wysyłamy dane w postaci JSONa.
       },
-      body: JSON.stringify(payload),  //Ostatni z nagłówków to body, czyli treść którą wysyłamy. 
+      body: JSON.stringify(payload),  //Ostatni z nagłówków to body, czyli treść którą wysyłamy.
       //Używamy tutaj metody JSON.stringify, aby przekonwertować obiekt payload na ciąg znaków w formacie JSON.
     };
 
@@ -102,7 +101,7 @@ class Cart{ //koszyk
   add(menuProduct){
     const thisCart = this;
     const generatedHTML = templates.cartProduct(menuProduct); /*generate HTML based on template */
-    const generatedDOM = utils.createDOMFromHTML(generatedHTML); /*create DOM using utils.createElementFromHTML */      
+    const generatedDOM = utils.createDOMFromHTML(generatedHTML); /*create DOM using utils.createElementFromHTML */
     thisCart.dom.productList.appendChild(generatedDOM); /*add element to cart */
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));//jednocześnie nowa instancja klasy new CartProduct oraz dodamy ją do tablicy thisCart.products
     thisCart.update();

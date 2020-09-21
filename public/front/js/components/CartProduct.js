@@ -1,4 +1,4 @@
-import {select} from '/js/settings.js'; 
+import {select} from '/js/settings.js';
 import AmountWidget from './AmountWidget.js';
 
 class CartProduct{ //produkt w koszyku.
@@ -13,7 +13,6 @@ class CartProduct{ //produkt w koszyku.
     thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
-    // console.log('new CartProduct' , thisCartProduct);
   }
 
   getElements(element){
@@ -42,7 +41,7 @@ class CartProduct{ //produkt w koszyku.
     const thisCartProduct = this;
     const event = new CustomEvent('remove' , {
       bubbles: true,
-      detail: { //Możemy w niej przekazać dowolne informacje do handlera eventu. 
+      detail: { //Możemy w niej przekazać dowolne informacje do handlera eventu.
         cartProduct: thisCartProduct, //przekazujemy odwołanie do tej instancji, dla której kliknięto guzik usuwania.
       },
     });
@@ -64,10 +63,10 @@ class CartProduct{ //produkt w koszyku.
   getData(){
     const thisCartProduct = this;
     const result = {
-      id: thisCartProduct.id, 
-      amount: thisCartProduct.amount, 
-      price: thisCartProduct.price, 
-      priceSingle: thisCartProduct.priceSingle, 
+      id: thisCartProduct.id,
+      amount: thisCartProduct.amount,
+      price: thisCartProduct.price,
+      priceSingle: thisCartProduct.priceSingle,
       params: thisCartProduct.params,
     };
     return result;

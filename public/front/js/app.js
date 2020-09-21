@@ -12,18 +12,18 @@ const app = {
     thisApp.navButtons = document.querySelectorAll('.btn-links');
     thisApp.navBar = document.querySelector('.main-nav'); //pasek linków.
 
-    const idFromHash = window.location.hash.replace('#/', ''); 
+    const idFromHash = window.location.hash.replace('#/', '');
     //uzyskujemy id podstrony, która ma być otwarta jako domyślna.
     //sprawdzamy każdą z podstron, czy pasuje do uzyskanego id z podstrony:
     let pageMatchingHash = thisApp.pages[0].id; //jeśli adres po # jest błędny to aktywuje się 1sza podstrona. Czyli welcome u nas.
     for(let page of thisApp.pages){//jeżeli pasuje do id to ta zostanie otwarta.
       if(page.id == idFromHash){
-        pageMatchingHash = page.id; 
+        pageMatchingHash = page.id;
         break; //hamuje kolejne iteracje pętli - gdy znajdzie pasującą do hasha stronę.
       }
     }
     thisApp.activatePage(pageMatchingHash); //aktywujemy odpowiednią podstronę.
-        
+
     for(let link of thisApp.navLinks){ //nasłuch dla klikniętego linka.
       thisApp.addNavigationButtonListener(link);
     }
@@ -70,7 +70,6 @@ const app = {
   },
   initMenu: function () {
     const thisApp = this;
-    //console.log('thisApp.data: ', thisApp.data);
     for (let productData in thisApp.data.products) {
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
@@ -97,11 +96,11 @@ const app = {
     const thisApp = this;
     const cartElem = document.querySelector(select.containerOf.cart);
     thisApp.cart = new Cart(cartElem); // outside app we call it by: app.cart.
-    
+
     thisApp.productList = document.querySelector(select.containerOf.menu);
     thisApp.productList.addEventListener('add-to-cart', function(event){ //event add-to-cart stworzony w Product.js.
-      app.cart.add(event.detail.product); //event posiada obiekt detail z właściwością product. 
-    }); 
+      app.cart.add(event.detail.product); //event posiada obiekt detail z właściwością product.
+    });
 
   },
   initBooking: function (){
@@ -117,6 +116,6 @@ const app = {
     thisApp.initCart();
     thisApp.initBooking();
   },
-    
+
 };
 app.init();
