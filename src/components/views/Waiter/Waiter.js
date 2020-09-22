@@ -1,12 +1,11 @@
 /*Kiedy użytkownik wchodzi na stronę widoku kelnera, komponent Waiter zostaje zamontowany (ale dopiero za chwilę się wyrenderuje).
-W tym momencie uruchamia funkcję, którą otrzymał w propsie fetchTables.A skąd wzięła się ta funkcja? Została przekazana do propsa
-przez kontener komponentu – to tam przypisujemy do tego propsa następującą funkcję:
-() => dispatch(fetchFromAPI())
+W tym momencie uruchamia funkcję, którą otrzymał w propsie fetchTables. Z onaostała przekazana do propsa przez kontener komponentu
+– to tam przypisujemy do tego propsa następującą funkcję: () => dispatch(fetchFromAPI())
 To właśnie tę funkcję wykonaliśmy po zamontowaniu komponentu! Wywoła ona funkcję dispatch, a jako jej argument poda wynik funkcji
 fetchFromAPI. Ta ostatnia jest kreatorem thunka i znajduje się w tablesRedux.js – zwraca ona thunka, czyli funkcję przyjmująca
 dwa argumenty, nazwane przez nas dispatch i getState. Za pomocą drugiej z nich sprawdzamy, czy w stanie aplikacji są już jakieś produkty.
 Wtedy zostanie zdispatchowana akcja, która w stanie aplikacji zapisze, że trwa proces wczytywania produktów z API. Następnie
-zostanie zapoczątkowane połączenie z API.Zatrzymajmy się na chwilę – nasza aplikacja będzie teraz czekać na odpowiedź serwera.
+zostanie zapoczątkowane połączenie z API. Zatrzymamy się na chwilę – nasza aplikacja będzie teraz czekać na odpowiedź serwera.
 W międzyczasie możemy wrócić do komponentu Waiter, który właśnie się renderuje. W stanie aplikacji znalazł informację o trwającym
 zapytaniu do API, więc wyświetla napis "Loading".Wracając do naszego thunka, serwer zwrócił odpowiedź. Połączenie się powiodło
 i dostaliśmy dane stolików. Nasz thunk dispatchuje akcję, w której będą przekazane dane otrzymane z API.Magazyn, po otrzymaniu
@@ -29,6 +28,7 @@ import Button from '@material-ui/core/Button';
 class Waiter extends React.Component {
   static propTypes = {
     fetchTables: PropTypes.func,
+    updateTable: PropTypes.func,
     tables: PropTypes.any,
     loading: PropTypes.shape({ //PropTypes.shape, który pozwala nam zdefiniować typy właściwości obiektu loading.
       active: PropTypes.bool,
@@ -38,7 +38,9 @@ class Waiter extends React.Component {
 
   componentDidMount(){
     const { fetchTables } = this.props;
-    fetchTables();
+    fetchTables(); /*Wystarczy tę funkcję uruchomić, nie musi jej przekazywać żadnych argumentów, ani odczytywać tego co jest przez
+    nią zwracane. Kontener powiąże tego propsa z dispatcherem wykorzystującym kreator akcji, który umieścimy w pliku tablesRedux.js.
+    W ten sposób tylko ten plik będzie wiedział zarówno o strukturze reduksowego stanu aplikacji, jak i o istnieniu API.*/
   }
 
   renderActions(status){
@@ -46,7 +48,7 @@ class Waiter extends React.Component {
       case 'free':
         return (
           <>
-            <Button>thinking</Button>
+            <Button onClick={() => this.props.updateTable()}>thinking</Button> {/* z przykładu https://material-ui.com/components/buttons/ */}
             <Button>new order</Button>
           </>
         );
@@ -127,9 +129,9 @@ class Waiter extends React.Component {
               ))}
             </TableBody>
           </Table>
-          <Link to={`${process.env.PUBLIC_URL}/waiter/orders/new`} className={styles.list} activeclassname='active'>Waiter - New Order</Link><br></br>
-          <Link to={`${process.env.PUBLIC_URL}/waiter/order/1`} className={styles.list}>Waiter order details Sample 1</Link><br></br>
-          <Link to={`${process.env.PUBLIC_URL}/waiter/order/2`} className={styles.list}>Waiter order details Sample 2</Link>
+          <Button component ={Link} to={`${process.env.PUBLIC_URL}/waiter/orders/new`} className={styles.list} activeclassname='active'>Waiter - New Order</Button><br></br>
+          <Button component ={Link} to={`${process.env.PUBLIC_URL}/waiter/order/1`} className={styles.list}>Waiter order details Sample 1</Button><br></br>
+          <Button component ={Link} to={`${process.env.PUBLIC_URL}/waiter/order/2`} className={styles.list}>Waiter order details Sample 2</Button>
         </Paper>
       );
     }

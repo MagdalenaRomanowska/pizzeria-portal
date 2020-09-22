@@ -1,11 +1,9 @@
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';  //dotyczy narzędzi developerskich dla Reduksa, ponieważ musimy zmienić sposób ich inicjowania w projekcie.
-
 import tablesReducer from './tablesRedux';
 
-// define initial state and shallow-merge initial data
-const initialState = {
+const initialState = {  // define initial state and shallow-merge initial data
   tables: {
     data: {}, //data będzie zawierać tablicę stolików, które pobierzemy z API.
     loading: {  //loading zawiera informacje o wczytywaniu danych.
@@ -15,13 +13,11 @@ const initialState = {
   },
 };
 
-// define reducers
-const reducers = {
+const reducers = {  // define reducers
   tables: tablesReducer,
 };
 
-// add blank reducers for initial state properties without reducers
-Object.keys(initialState).forEach(item => {
+Object.keys(initialState).forEach(item => {  // add blank reducers for initial state properties without reducers
   if (typeof reducers[item] == 'undefined') {
     reducers[item] = (statePart = null) => statePart;
   }
@@ -29,9 +25,8 @@ Object.keys(initialState).forEach(item => {
 
 const combinedReducers = combineReducers(reducers);
 
-// create store
-const store = createStore(
-  combinedReducers,
+const store = createStore(  // create store. Stan całej aplikacji przetrzymywany jest w drzewie obiektów wewnątrz pojedynczego obiektu store.
+  combinedReducers,  //Stan jest tylko do odczytu - jedynym sposobem na zmianę stanu jest wywołanie akcji, która zwraca obiekt opisujący co powinno się stać.
   initialState,
   composeWithDevTools(  //wcześniej, przed Thunkiem, bylo to: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     applyMiddleware(thunk)  // Dzięki tej zmianie będą działać jednocześnie narzędzia developerskie dla Reduksa, jak i Thunk.
