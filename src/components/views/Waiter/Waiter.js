@@ -43,34 +43,33 @@ class Waiter extends React.Component {
     W ten sposób tylko ten plik będzie wiedział zarówno o strukturze reduksowego stanu aplikacji, jak i o istnieniu API.*/
   }
 
-  renderActions(status){
+  renderActions(status, id){ //przekazuję po kliknięciu guzika "Action" nowy status zamówienia.
     switch (status) {
       case 'free':
         return (
           <>
-            <Button onClick={() => this.props.updateTable()}>thinking</Button> {/* z przykładu https://material-ui.com/components/buttons/ */}
-            <Button>new order</Button>
+            <Button onClick={() => this.props.updateTable('thinking', id)}>thinking</Button> {/* z przykładu https://material-ui.com/components/buttons/ */}
           </>
         );
       case 'thinking':
         return (
-          <Button>new order</Button>
+          <Button onClick={() => this.props.updateTable('ordered', id)}>new order</Button>
         );
       case 'ordered':
         return (
-          <Button>prepared</Button>
+          <Button onClick={() => this.props.updateTable('prepared', id)}>prepared</Button>
         );
       case 'prepared':
         return (
-          <Button>delivered</Button>
+          <Button onClick={() => this.props.updateTable('delivered', id)}>delivered</Button>
         );
       case 'delivered':
         return (
-          <Button>paid</Button>
+          <Button onClick={() => this.props.updateTable('paid', id)}>paid</Button>
         );
       case 'paid':
         return (
-          <Button>free</Button>
+          <Button onClick={() => this.props.updateTable('free', id)}>free</Button>
         );
       default:
         return null;
@@ -123,7 +122,7 @@ class Waiter extends React.Component {
                     )}
                   </TableCell>
                   <TableCell>
-                    {this.renderActions(row.status)}
+                    {this.renderActions(row.status, row.id)}
                   </TableCell>
                 </TableRow>
               ))}

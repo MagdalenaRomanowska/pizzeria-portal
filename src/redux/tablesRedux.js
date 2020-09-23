@@ -31,7 +31,7 @@ export const updateStarted = payload => ({ payload, type: UPDATE_START });
 export const updateSuccess = payload => ({ payload, type: UPDATE_SUCCESS });
 export const updateError = payload => ({ payload, type: UPDATE_ERROR });
 
-export const fetchFromAPI = () => { /* thunk creators */ //kreator thunka, czyli fetchFromAPI. To funkcja, która nie przyjmuje żadnych argumentów. Zwraca ona thunka, czyli funkcję.
+export const fetchFromAPI = () => { /* thunk creators */ //kreator thunka, czyli fetchFromAPI. Ta funkcja zwraca thunka, czyli funkcję.
   return (dispatch, getState) => {// Thunk przyjmuje dwa argumenty – dispatch i getState. Pierwszy z nich, podobnie jak w mapDispatchToProps w kontenerze komponentu, jest funkcją służącą do dispatchowania akcji. Drugi, getState, jest funkcją pozwalającą na pobranie stanu aplikacji.
     dispatch(fetchStarted());//Dzięki tym dwóm funkcjom będziemy mogli zrealizować algorytm, który zapisaliśmy wcześniej. Dispatchujemy akcję z kreatora fetchStarted, czyli typu FETCH_START, a następnie uruchamiamy połączenie z API z pomocą Axiosa.
 
@@ -47,19 +47,21 @@ export const fetchFromAPI = () => { /* thunk creators */ //kreator thunka, czyli
   };
 };
 
-export const updateAPI = () => { /* thunk creators */ //kreator thunka, czyli fetchFromAPI. To funkcja, która nie przyjmuje żadnych argumentów. Zwraca ona thunka, czyli funkcję.
+export const updateAPI = (status, id) => { /* thunk creators */ //kreator thunka, czyli fetchFromAPI. Ta funkcja zwraca thunka, czyli funkcję.
   return (dispatch, getState) => {// Thunk przyjmuje dwa argumenty – dispatch i getState. Pierwszy z nich, podobnie jak w mapDispatchToProps w kontenerze komponentu, jest funkcją służącą do dispatchowania akcji. Drugi, getState, jest funkcją pozwalającą na pobranie stanu aplikacji.
     dispatch(updateStarted());//Dzięki tym dwóm funkcjom będziemy mogli zrealizować algorytm, który zapisaliśmy wcześniej. Dispatchujemy akcję z kreatora fetchStarted, czyli typu FETCH_START, a następnie uruchamiamy połączenie z API z pomocą Axiosa.
 
-    //Axios używamy zamiast fetch (wbudowanego w przeglądarkę). Ułatwi nam to wykonywanie połączeń AJAXowych, a w szczególności wychwytywanie błędów.
-    Axios//Jego metoda .get służy do wysyłania zapytań metodą GET – analogicznie, do wysłania nowego zamówienia do API używalibyśmy metody .post.
-      .post(`${api.url}/${api.tables}`, {'id': '1', 'status': 'prepared', 'order': null})  //wysyłam nowy stan obiektu, podpowiedź: https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/
-      .then(res => { //Następnie używamy metody .then do zareagowania na odpowiedź serwera – w tym przypadku dispatchujemy akcję FETCH_SUCCESS, uruchamiając jej kreator fetchSuccess, któremu jako argument przekazujemy dane otrzymane z serwera, czyli res.data.
+    Axios
+      .put(`${api.url}/${api.tables}/${id}`, {'status': `${status}`})   //wysyłam nowy stan obiektu, podpowiedź: https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/
+      .then(res => {
         dispatch(updateSuccess(res.data));
+
       })
-      .catch(err => { //Jeżeli wystąpił błąd połączenia, zamiast funkcji podanej w metodzie .then wykona się funkcja z metody .catch – w tym wypadku dispatcher akcji FETCH_ERROR, którego kreator fetchError otrzyma komunikat błędu (a w przypadku braku komunikatu, otrzyma true).
+      .catch(err => { //Jeżeli wystąpił błąd połączenia.
         dispatch(updateError(err.message || true));
       });
+    console.log('tables:', api.url+'/'+api.tables+'/'+id);
+    console.log('status:', status);
   };
 };
 
