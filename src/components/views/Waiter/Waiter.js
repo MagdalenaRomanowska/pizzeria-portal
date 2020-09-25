@@ -80,10 +80,16 @@ class Waiter extends React.Component {
     const { loading: { active, error }, tables } = this.props;
     // Stosujemy wyrażenie if...else if...else, w którym każdy blok kodu zawiera return.
     // W efekcie mamy trzy warianty zawartości tego komponentu, które zależą od statusu połączenia z API.
-    if(active || !tables.length){
+    if(active){
       return (
         <Paper className={styles.component}>
           <p>Loading...</p>
+        </Paper>
+      );
+    } else if(!tables.length) {
+      return (
+        <Paper className={styles.component}>
+          <p>No data.</p>
         </Paper>
       );
     } else if(error) {
